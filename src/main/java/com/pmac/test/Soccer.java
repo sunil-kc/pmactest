@@ -19,17 +19,6 @@ public class Soccer {
 
     private static final String fileName = "target/classes/soccer.dat";
 
-    private static Integer getIntValue(String string){
-        StringBuilder sb = new StringBuilder();
-        char[] chars = string.toCharArray();
-        for (char c : chars) {
-            if(Character.isDigit(c)){
-                sb.append(c);
-            }
-        }
-        return sb.length() == 0 ? null : Integer.valueOf(sb.toString());
-    }
-
     private static Map<Integer, String> teamMap = new HashMap<>();
     private static Map<Integer,int[]> teamScoreMap = new HashMap<>();
 
@@ -42,10 +31,10 @@ public class Soccer {
                 if(!s.isEmpty()) {
                     String[] strArray = s.split("\\s+");
                     if (strArray.length > 10 ) {
-                        int teamId = Integer.valueOf(getIntValue(strArray[COL_TEAM_ID]));
+                        int teamId = Integer.valueOf(Util.getIntValue(strArray[COL_TEAM_ID]));
                         String team = strArray[COL_TEAM_NAME].trim();
-                        int fGoals = Integer.valueOf(getIntValue(strArray[COL_FOR]));
-                        int aGaols = Integer.valueOf(getIntValue(strArray[COL_AGAINST]));
+                        int fGoals = Integer.valueOf(Util.getIntValue(strArray[COL_FOR]));
+                        int aGaols = Integer.valueOf(Util.getIntValue(strArray[COL_AGAINST]));
                         teamScoreMap.put(teamId, new int[]{fGoals, aGaols});
                         teamMap.put(teamId,team);
                     }

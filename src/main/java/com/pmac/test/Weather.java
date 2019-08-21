@@ -18,17 +18,6 @@ public class Weather {
 
     private static final String fileName = "target/classes/w_data.dat";
 
-    private static Integer getIntValue(String string){
-        StringBuilder sb = new StringBuilder();
-        char[] chars = string.toCharArray();
-        for (char c : chars) {
-            if(Character.isDigit(c)){
-                sb.append(c);
-            }
-        }
-        return sb.length() == 0 ? null : Integer.valueOf(sb.toString());
-    }
-
     private static Map<Integer,int[]> dayMap = new HashMap<>();
 
     public static void main(String[] args) {
@@ -40,10 +29,10 @@ public class Weather {
                 if(!s.isEmpty()) {
                     String[] strArray = s.split("\\s+");
                     if (strArray.length > 3){
-                        Integer day = getIntValue(strArray[COL_DAY].trim());
+                        Integer day = Util.getIntValue(strArray[COL_DAY].trim());
                         if(day != null) {
-                            int max = Integer.valueOf(getIntValue(strArray[COL_MAX]));
-                            int min = Integer.valueOf(getIntValue(strArray[COL_MIN]));
+                            int max = Integer.valueOf(Util.getIntValue(strArray[COL_MAX]));
+                            int min = Integer.valueOf(Util.getIntValue(strArray[COL_MIN]));
                             dayMap.put(day,new int[]{max, min});
                         }
                     }
